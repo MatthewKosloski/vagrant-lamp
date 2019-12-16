@@ -22,6 +22,10 @@ apt-get install -y mysql-server
 
 # Download and Extract WordPress into the /var/www/html directory.
 cd /var/www/html && wget -c https://wordpress.org/latest.tar.gz -O - | tar -xz && cd wordpress && mv * ../ && cd ../ && rm -rf wordpress
+cd /var/www/html && touch .htaccess
+
+# Change Apache config file to allow .htaccess rewrites.
+cp /vagrant/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Restart Apache
 service apache2 restart
